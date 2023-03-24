@@ -8,16 +8,21 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class HellobootApplication {
 	public static void main(String[] args) {
-		GenericWebApplicationContext ctx = new GenericWebApplicationContext();
+		GenericWebApplicationContext ctx = new GenericWebApplicationContext() {
+			@Override
+			protected void onRefresh() {
+				super.onRefresh();
+
+				ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+				WebServer webServer = serverFactory
+						.getWebServer(sc -> sc.addServlet("dispatcherServlet",
+										new DispatcherServlet(this))
+								.addMapping("/*"));
+				webServer.start();
+			}
+		};
 		ctx.registerBean(HelloController.class);
 		ctx.registerBean(SimpleHelloService.class);
 		ctx.refresh();
-
-		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
-		WebServer webServer = serverFactory
-				.getWebServer(sc -> sc.addServlet("dispatcherServlet",
-								new DispatcherServlet(ctx))
-						.addMapping("/*"));
-		webServer.start();
 	}
 }
