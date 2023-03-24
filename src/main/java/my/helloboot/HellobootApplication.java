@@ -3,12 +3,26 @@ package my.helloboot;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
-import org.springframework.web.context.support.GenericWebApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+@Configuration
 public class HellobootApplication {
+
+	@Bean
+	public HelloController helloController(HelloService helloService) {
+		return new HelloController(helloService);
+	}
+
+	@Bean
+	public HelloService helloService() {
+		return new SimpleHelloService();
+	}
+
 	public static void main(String[] args) {
-		GenericWebApplicationContext ctx = new GenericWebApplicationContext() {
+		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext() {
 			@Override
 			protected void onRefresh() {
 				super.onRefresh();
@@ -21,8 +35,7 @@ public class HellobootApplication {
 				webServer.start();
 			}
 		};
-		ctx.registerBean(HelloController.class);
-		ctx.registerBean(SimpleHelloService.class);
+		ctx.register(HellobootApplication.class);
 		ctx.refresh();
 	}
 }
