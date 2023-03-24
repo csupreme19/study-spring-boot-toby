@@ -13,24 +13,21 @@ import java.util.Objects;
 
 @RequestMapping("/hello")
 @Controller
-public class HelloController implements ApplicationContextAware {
+public class HelloController {
 
     private final HelloService helloService;
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
-    public HelloController(HelloService helloService) {
+    public HelloController(HelloService helloService, ApplicationContext applicationContext) {
         this.helloService = helloService;
+        this.applicationContext = applicationContext;
+
+        System.out.println(applicationContext);
     }
 
     @GetMapping
     @ResponseBody
     public String hello(String name) {
         return helloService.sayHello(Objects.requireNonNull(name));
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println(applicationContext);
-        this.applicationContext = applicationContext;
     }
 }
