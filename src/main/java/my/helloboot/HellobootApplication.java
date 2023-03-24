@@ -18,6 +18,7 @@ public class HellobootApplication {
 	public static void main(String[] args) {
 		GenericApplicationContext ctx = new GenericApplicationContext();
 		ctx.registerBean(HelloController.class);
+		ctx.registerBean(SimpleHelloService.class);
 		ctx.refresh();
 
 		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
