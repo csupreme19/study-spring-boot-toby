@@ -24,21 +24,6 @@ public class HellobootApplication {
 	}
 
 	public static void main(String[] args) {
-		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext() {
-			@Override
-			protected void onRefresh() {
-				super.onRefresh();
-
-				ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
-				DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
-
-				WebServer webServer = serverFactory
-						.getWebServer(sc -> sc.addServlet("dispatcherServlet", dispatcherServlet)
-								.addMapping("/*"));
-				webServer.start();
-			}
-		};
-		ctx.register(HellobootApplication.class);
-		ctx.refresh();
+		MySpringApplication.run(HellobootApplication.class, args);
 	}
 }
