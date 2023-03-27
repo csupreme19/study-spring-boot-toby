@@ -1,4 +1,4 @@
-package my.helloboot;
+package my.config;
 
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
