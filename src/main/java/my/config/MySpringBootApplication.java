@@ -1,6 +1,5 @@
-package my.helloboot;
+package my.config;
 
-import my.config.EnableMyAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,6 +1,7 @@
 package my.helloboot;
 
 import my.config.MySpringApplication;
+import my.config.MySpringBootApplication;
 
 @MySpringBootApplication
 public class HellobootApplication {
