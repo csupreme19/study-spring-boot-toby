@@ -6,7 +6,7 @@ import my.config.MyConfigurationProperties;
 
 @Getter
 @Setter
-@MyConfigurationProperties
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
 
     private String contextPath;
