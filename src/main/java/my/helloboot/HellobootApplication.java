@@ -14,6 +14,10 @@ public class HellobootApplication {
         return args -> {
             String name = env.getProperty("my.name");
             System.out.println("my.name=" + name);
+            String port = env.getProperty("server.port");
+            System.out.println("server.port=" + port);
+            String url = env.getProperty("data.url");
+            System.out.println("data.url=" + url);
         };
     }
 
