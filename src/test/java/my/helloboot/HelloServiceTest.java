@@ -27,12 +27,24 @@ public class HelloServiceTest {
 
     @UnitTest
     void simpleHelloService() {
-        SimpleHelloService helloService = new SimpleHelloService();
+        SimpleHelloService helloService = new SimpleHelloService(helloRepositoryStub);
 
         String ret = helloService.sayHello("Test");
 
         assertThat(ret).isEqualTo("Hello Test");
     }
+
+    private static HelloRepository helloRepositoryStub = new HelloRepository() {
+        @Override
+        public Hello findHello(String name) {
+            return null;
+        }
+
+        @Override
+        public void increaseCount(String name) {
+
+        }
+    };
 
     @FastUnitTest
     void helloDecorator() {
