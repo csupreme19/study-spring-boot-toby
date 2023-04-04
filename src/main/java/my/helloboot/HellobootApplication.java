@@ -2,16 +2,15 @@ package my.helloboot;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import my.config.MySpringBootApplication;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@MySpringBootApplication
+@SpringBootApplication
 @RequiredArgsConstructor
-//public class HellobootApplication implements InitializingBean {
 public class HellobootApplication {
 
     private final JdbcTemplate jdbcTemplate;

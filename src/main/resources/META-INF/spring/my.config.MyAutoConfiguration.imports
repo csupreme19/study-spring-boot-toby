@@ -1,6 +1,0 @@
-my.config.autoconfig.DispatcherServletConfig
-my.config.autoconfig.TomcatWebServerConfig
-my.config.autoconfig.UndertowWebServerConfig
-my.config.autoconfig.PropertyPlaceholderConfig
-my.config.autoconfig.PropertyPostProcessorConfig
-my.config.autoconfig.DataSourceConfig
